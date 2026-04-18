@@ -41,40 +41,6 @@
                     <span class="say">4. Allah, ease all your affairs and remove your difficulties.</span><br><br>
                     <span class="say">5. Allah, grant you a heart full of gratitude.</span><br><br>
                     <span class="say">6. Allah, protect you from every evil and harm.</span><br><br>
-                    <span class="say">7. Allah, make you among the patient and steadfast.</span><br><br>
-                    <span class="say">8. Allah, forgive all your sins and shortcomings.</span><br><br>
-                    <span class="say">9. Allah, grant you sincerity in every action.</span><br><br>
-                    <span class="say">10. Allah, fill your life with barakah and peace.</span><br><br>
-                    <span class="say">11. Allah, grant you strong faith and certainty.</span><br><br>
-                    <span class="say">12. Allah, make you among those You love.</span><br><br>
-                    <span class="say">13. Allah, bless you with good health and long life.</span><br><br>
-                    <span class="say">14. Allah, grant you success in all your goals.</span><br><br>
-                    <span class="say">15. Allah, keep you away from all wrong paths.</span><br><br>
-                    <span class="say">16. Allah, make your heart attached to Him.</span><br><br>
-                    <span class="say">17. Allah, grant you inner peace and calmness.</span><br><br>
-                    <span class="say">18. Allah, make you among the grateful servants.</span><br><br>
-                    <span class="say">19. Allah, grant you wisdom and understanding.</span><br><br>
-                    <span class="say">20. Allah, protect you from sadness and anxiety.</span><br><br>
-                    <span class="say">21. Allah, bless you with good company.</span><br><br>
-                    <span class="say">22. Allah, make you a source of goodness for others.</span><br><br>
-                    <span class="say">23. Allah, grant you strength in difficult times.</span><br><br>
-                    <span class="say">24. Allah, make you among the successful in this life and the next.</span><br><br>
-                    <span class="say">25. Allah, grant you a beautiful destiny.</span><br><br>
-                    <span class="say">26. Allah, fill your days with happiness and blessings.</span><br><br>
-                    <span class="say">27. Allah, guide you in every step you take.</span><br><br>
-                    <span class="say">28. Allah, protect you from jealousy and evil eyes.</span><br><br>
-                    <span class="say">29. Allah, grant you contentment in your heart.</span><br><br>
-                    <span class="say">30. Allah, bless you with a bright and peaceful future.</span><br><br>
-                    <span class="say">31. Allah, grant you ease after every hardship.</span><br><br>
-                    <span class="say">32. Allah, make you among those who trust Him completely.</span><br><br>
-                    <span class="say">33. Allah, grant you honor and dignity.</span><br><br>
-                    <span class="say">34. Allah, fill your life with light and guidance.</span><br><br>
-                    <span class="say">35. Allah, protect you from all unseen harms.</span><br><br>
-                    <span class="say">36. Allah, grant you happiness that never fades.</span><br><br>
-                    <span class="say">37. Allah, bless you with endless mercy.</span><br><br>
-                    <span class="say">38. Allah, make you among the people of Jannah.</span><br><br>
-                    <span class="say">39. Allah, grant you a life full of kindness and goodness.</span><br><br>
-                    <span class="say">40. Allah, accept all your duas and worship.</span><br><br>
                 </div>
             </div>
             <div id="clock-box">
@@ -139,17 +105,16 @@
             var foot = tree.footer;
             var hold = 1;
 
-            canvas.click(function (e) {
+            canvas.on('click touchstart', function (e) {
                 playAudio();
-                var offset = canvas.offset(), x, y;
-                x = e.pageX - offset.left;
-                y = e.pageY - offset.top;
-                if (seed.hover(x, y)) {
-                    hold = 0;
-                    canvas.unbind("click");
-                    canvas.unbind("mousemove");
-                    canvas.removeClass('hand');
-                }
+                
+                // Allow tapping anywhere on the canvas to trigger the animation
+                // This bypassed the offset issue caused by responsive scaling on mobile
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("touchstart");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
             }).mousemove(function (e) {
                 var offset = canvas.offset(), x, y;
                 x = e.pageX - offset.left;
