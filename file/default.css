@@ -31,16 +31,35 @@ a {
   left: 80px;
   top: 80px;
   position: absolute;
-  overflow-y: auto;
-  scrollbar-width: thin;
+  overflow: hidden; /* Hide scrollbar completely */
 }
-#text::-webkit-scrollbar {
-    width: 6px;
+
+.heart {
+  position: fixed;
+  bottom: -10vh;
+  font-size: 24px;
+  z-index: 1000;
+  opacity: 0.8;
+  animation: floatUp ease-in infinite; /* duration is set in JS */
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255,105,180,0.8));
 }
-#text::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
+
+@keyframes floatUp {
+  0% {
+      transform: translateY(0) scale(0.8) rotate(0deg);
+      opacity: 0.8;
+  }
+  50% {
+      transform: translateY(-50vh) scale(1.1) rotate(15deg);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-120vh) scale(1) rotate(-15deg);
+      opacity: 0;
+  }
 }
+
 #code {
   display: none;
   color: rgb(196, 255, 255);
