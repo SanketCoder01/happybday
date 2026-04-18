@@ -6,12 +6,32 @@ var clientWidth = $win.width();
 var clientHeight = $win.height();
 
 $(window).resize(function() {
-    var newWidth = $win.width();
-    var newHeight = $win.height();
-    if (newWidth != clientWidth && newHeight != clientHeight) {
-        location.replace(location);
+    function resizeWindow() {
+        var winW = $(window).width();
+        var winH = $(window).height();
+        var wrap = $('#wrap');
+        var wrapW = 1100;
+        var wrapH = 680;
+        
+        var scaleX = winW / wrapW;
+        var scaleY = winH / wrapH;
+        var scale = Math.min(scaleX, scaleY);
+        
+        // Add a bit of padding margin
+        scale = scale * 0.95;
+        
+        wrap.css({
+            'transform': 'scale(' + scale + ')',
+            'transform-origin': 'top center',
+            'margin-top': (winH - wrapH * scale) / 2 + 'px'
+        });
     }
+    resizeWindow();
 });
+$(document).ready(function() {
+    $(window).trigger('resize');
+});
+
 
 (function($) {
 	$.fn.typewriter = function() {
@@ -26,10 +46,15 @@ $(window).resize(function() {
 					progress++;
 				}
 				$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+				// Auto-scroll to the bottom of the container (#text or its parent)
+				var textContainer = document.getElementById('text');
+				if (textContainer) {
+					textContainer.scrollTop = textContainer.scrollHeight;
+				}
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
-			}, 75);
+			}, 30); // sped up from 75 to 30ms
 		});
 		return this;
 	};
