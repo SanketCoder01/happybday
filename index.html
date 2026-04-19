@@ -17,8 +17,19 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("myAudio");
-            audio.play();
+            audio.play().catch(function(error) {
+                console.log("Audio play failed:", error);
+            });
         }
+
+        // Play audio on first user interaction (click/tap anywhere)
+        document.addEventListener('click', function() {
+            playAudio();
+        }, { once: true });
+
+        document.addEventListener('touchstart', function() {
+            playAudio();
+        }, { once: true });
     </script>
 </head>
 
