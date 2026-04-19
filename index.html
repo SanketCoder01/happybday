@@ -172,6 +172,7 @@
             }));
 
             var runAsync = eval(Jscex.compile("async", function () {
+                playAudio();
                 $await(seedAnimate());
                 $await(growAnimate());
                 $await(flowAnimate());
